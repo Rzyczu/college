@@ -1,27 +1,33 @@
 import Enums.CurriculumType;
 import People.Professor;
-
 import java.util.*;
 
 public class Curriculum {
-    public int Term;
-    public List<Subject> Subjects;
-    public CurriculumType Type;
+    private final int Term;
+    private List<Subject> Subjects;
+    private final CurriculumType Type;
 
     public Curriculum(int term, CurriculumType type) throws Exception {
         for (Curriculum curriculum : StudyField.Curriculum) {
-            if (curriculum.Term == this.Term && curriculum.Type == type) {
-                return;
+            if (curriculum.Term == term && curriculum.Type == type) {
+                throw new Exception("Curriculum for term " + term + " and type " + type + " already exists.");
             }
         }
         Term = term;
-        Subjects = new ArrayList<Subject>();
+        Subjects = new ArrayList<>();
         Type = type;
     }
 
-    //todo poprawić
+    public int getTerm() {
+        return Term;
+    }
+
+    public CurriculumType getType() {
+        return Type;
+    }
+
     public String getInfo() {
-        return "Semester : " + Term + "\nType : " + Type.toString();
+        return "Semester: " + Term + "\nType: " + Type.name();
     }
 
     public int getYear() {
@@ -35,7 +41,7 @@ public class Curriculum {
     public List<Professor> getLecturers() {
         Set<Professor> professorsList = new HashSet<>();
         for (Subject subject : Subjects) {
-            professorsList.add(subject.Lecturer);
+            professorsList.add(subject.getLecturer());
         }
         return new ArrayList<>(professorsList);
     }

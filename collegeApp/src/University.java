@@ -3,28 +3,37 @@ import Enums.UniversityType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class University {
-    public String Name;
-    public UniversityType Type;
-    public String Country;
-    public String City;
-    public List<Department> Departments;
+public
+class University {
+    private String Name;
+    private UniversityType Type;
+    private String Country;
+    private String City;
+    private List<Department> Departments;
 
-    public University(String name, UniversityType type, String country, String city, List<String> departments) {
+    public University(String name, UniversityType type, String country, String city, List<Department> departments) {
         Name = name;
         Type = type;
         Country = country;
         City = city;
-        Departments = new ArrayList<Department>();
+        Departments = departments != null ? departments: new ArrayList<>();
     }
 
-    //todo poprawić
     public String getInfo() {
-        return Name + ", " + Type + ", " + Country + ", " + City + ", " + Departments;
+        StringBuilder info = new StringBuilder();
+        info.append("Name: ").append(Name).append("\n");
+        info.append("Type: ").append(Type).append("\n");
+        info.append("Country: ").append(Country).append("\n");
+        info.append("City: ").append(City).append("\n");
+        info.append("Departments: ");
+        for (Department department : Departments){
+            info.append(department.getName()).append(", ");
+        }
+        return info.toString();
     }
 
     public String getLocalization() {
-        return Country + ", " + City;
+        return "Country: " + Country + ", City: " + City;
     }
 
     public List<Department> getDepartments() {

@@ -1,9 +1,9 @@
 import People.Professor;
 
 public class Subject {
-    public String Name;
-    public int Hours;
-    public Professor Lecturer;
+    private String Name;
+    private int Hours;
+    private Professor Lecturer;
 
     public Subject(String name, int hours, Professor lecturer) {
         Name = name;
@@ -11,9 +11,20 @@ public class Subject {
         Lecturer = lecturer;
     }
 
-    //todo poprawić
+    public String getName() {
+        return Name;
+    }
+
+    public int getHours() {
+        return Hours;
+    }
+
+    public Professor getLecturer() {
+        return Lecturer;
+    }
+
     public String getInfo() {
-        return "name: " + Name + ", hours: " + Hours + ", lecturer: " + Lecturer;
+        return "Name: " + Name + ", Hours: " + Hours + ", Lecturer: " + Lecturer.getName();
     }
 
     public void changeHoursNumber(int hours) {
@@ -23,5 +34,4 @@ public class Subject {
     public void changeLecturer(Professor lecturer) {
         Lecturer = lecturer;
     }
-
 }

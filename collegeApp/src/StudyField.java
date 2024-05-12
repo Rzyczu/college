@@ -1,42 +1,54 @@
 import People.Professor;
 import People.Student;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
-public
-class StudyField {
-    public String Name;
-    public List<Class> Classes;
+public class StudyField {
+    private final String Name;
+    private List<Class> Classes;
     public static List<Curriculum> Curriculum;
 
-    public
-    StudyField(String name) {
+    public StudyField(String name) {
         Name = name;
-        Classes = new ArrayList<Class>();
-        Curriculum = new ArrayList<Curriculum>();
+        Classes = new ArrayList<>();
+        Curriculum = new ArrayList<>();
     }
 
-    //todo poprawić
-    public
-    String getInfo() {
-        return Name + ", Classes: " + Classes + ", Courses: " + Curriculum;
+    public String getName() {
+        return Name;
     }
 
-    public
-    List<Class> getClasses() {
+    public String getInfo() {
+        StringBuilder info = new StringBuilder();
+        info.append("Name: ").append(Name).append("\n");
+        info.append("Classes: ");
+        for (Class c : Classes) {
+            info.append(c.getClass()).append(", ");
+        }
+        if (!Classes.isEmpty()) {
+            info.setLength(info.length() - 2);
+        }
+        info.append("\nCourses: ");
+        for (Curriculum curriculum : Curriculum) {
+            info.append(curriculum.getYear()).append(", ");
+        }
+        if (!Curriculum.isEmpty()) {
+            info.setLength(info.length() - 2);
+        }
+        return info.toString();
+    }
+
+    public List<Class> getClasses() {
         return Classes.stream()
-                .filter(c -> c.Term > -1)
+                .filter(c -> c.getTerm() > -1)
                 .collect(Collectors.toList());
     }
 
-    public
-    List<Curriculum> getCourses() {
+    public List<Curriculum> getCourses() {
         return Curriculum;
     }
 
-    public
-    List<Professor> getProfessors() {
+    public List<Professor> getProfessors() {
         Set<Professor> professorsList = new HashSet<>();
         for (Curriculum curriculum : Curriculum) {
             professorsList.addAll(curriculum.getLecturers());
@@ -44,32 +56,27 @@ class StudyField {
         return new ArrayList<>(professorsList);
     }
 
-    public
-    List<Student> getStudents() {
+    public List<Student> getStudents() {
         Set<Student> studentsList = new HashSet<>();
         for (Class c : Classes) {
-            studentsList.addAll(c.Students);
+            studentsList.addAll(c.getStudents());
         }
         return new ArrayList<>(studentsList);
     }
 
-    public
-    void addCourse(Curriculum curriculum) {
+    public void addCourse(Curriculum curriculum) {
         Curriculum.add(curriculum);
     }
 
-    public
-    void addClass(Class c) {
+    public void addClass(Class c) {
         Classes.add(c);
     }
 
-    public
-    void removeCourse(Curriculum curriculum) {
+    public void removeCourse(Curriculum curriculum) {
         Curriculum.remove(curriculum);
     }
 
-    public
-    void removeClass(Class c) {
+    public void removeClass(Class c) {
         Classes.remove(c);
     }
 }
