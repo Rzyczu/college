@@ -2,6 +2,7 @@ package University;
 
 import People.Personnel;
 import People.Professor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class Department {
         return StudyFields;
     }
 
+    public void setStudyField(List<StudyField> StudyFieldList) {
+        StudyFields.addAll(StudyFieldList);
+    }
+
     public void addPersonnel(Personnel personnel) {
         PersonnelList.add(personnel);
     }
@@ -53,15 +58,18 @@ public class Department {
     public String getInfo() {
         StringBuilder info = new StringBuilder();
         info.append("Name: ").append(Name).append("\n");
-        info.append("Dean: ").append(Dean.getName()).append("\n");
+        info.append("Dean: ").append(Dean.getFullName()).append("\n");
         info.append("Personnel: ");
-        for (Personnel personnel : PersonnelList) {
+        for (Personnel personnel : PersonnelList){
             info.append(personnel.getName()).append(", ");
         }
-        info.append("\nStudy Fields: ");
-        for (StudyField studyField : StudyFields) {
-            info.append(studyField.getName()).append(", ");
+        info.append("\nStudy Fields: ").append("\n");
+        info.append("\u001B[0m");
+        for (StudyField studyField : StudyFields){
+            info.append(studyField.getInfo()).append("\n");
         }
+        info.append("\n");
+        info.append("\u001B[32m");
 
         return info.toString();
     }

@@ -1,22 +1,46 @@
-import People.Personnel;
-import People.Professor;
-import People.Student;
+import Enums.UniversityType;
+import People.*;
+import University.*;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static Engine.ReadExcel.*;
 
 public class Main {
-    public static void main(String[] args) {
-        String StudentFilePath= "C:\\repos\\college\\Data\\StudentList.xlsx";
-        String PersonnelFilePath= "C:\\repos\\college\\Data\\PersonnelList.xlsx";
-        String ProfessorFilePath= "C:\\repos\\college\\Data\\ProfessorList.xlsx";
+    static String StudentFilePath= "C:\\repos\\college\\Data\\StudentList.xlsx";
+    static String PersonnelFilePath= "C:\\repos\\college\\Data\\PersonnelList.xlsx";
+    static String ProfessorFilePath= "C:\\repos\\college\\Data\\ProfessorList.xlsx";
 
-        setStudents(StudentFilePath);
-        setPersonnel(PersonnelFilePath);
-        setProfessors(ProfessorFilePath);
+    public static void main(String[] args) {
+
+
+        test();
+    }
+
+    public static void test() {
+        List<Student> StudentList = setStudents(StudentFilePath);
+        List<Personnel> PersonnelList = setPersonnel(PersonnelFilePath);
+        List<Professor> ProfessorList = setProfessors(ProfessorFilePath);
+
+        University PK = new University("Politechnika Krakowska", UniversityType.STATE, "Poland", "Cracow", null);
+
+        List<Department> PK_Departments = new ArrayList<>();
+        PK_Departments.add(new Department("Wydział Mechaniczny", ProfessorList.get(1)));
+        PK_Departments.add(new Department("Wydział Architektury", ProfessorList.get(2)));
+        PK_Departments.add(new Department("Wydział Informatyki i Telekomunikacji", ProfessorList.get(3)));
+        PK_Departments.add(new Department("Wydział Inżynierii Elektronicznej i Komputerowej", ProfessorList.get(4)));
+        PK.setDepartment(PK_Departments);
+
+        List<StudyField> PK_WIEiK_StudyFields = new ArrayList<>();
+        PK_WIEiK_StudyFields.add(new StudyField("Elektronika"));
+        PK_WIEiK_StudyFields.add(new StudyField("Informatyka w Inżynierii Komputerowej"));
+        PK.getDepartmentByName("Wydział Inżynierii Elektronicznej i Komputerowej").setStudyField(PK_WIEiK_StudyFields);
+
+        System.out.println(PK.getInfo());
+
 
     }
 
@@ -25,7 +49,8 @@ public class Main {
         try {
             students = readStudentsFromExcel(FilePath);
             for (Student student : students){
-                System.out.println(student.getInfo());
+
+                System.out.println("\u001B[90m" + student.getInfo() + "\u001B[0m");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,7 +80,7 @@ public class Main {
         try {
             professors = readProfessorFromExcel(FilePath);
             for (Professor professor : professors) {
-                System.out.println(professor.getInfo());
+                System.out.println("\u001B[90m" + professor.getInfo() + "\u001B[0m");
             }
         } catch (IOException e) {
             e.printStackTrace();

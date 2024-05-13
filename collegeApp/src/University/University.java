@@ -24,13 +24,15 @@ class University {
     public String getInfo() {
         StringBuilder info = new StringBuilder();
         info.append("Name: ").append(Name).append("\n");
-        info.append("Type: ").append(Type).append("\n");
+        info.append("Type: ").append(Type.getName()).append("\n");
         info.append("Country: ").append(Country).append("\n");
         info.append("City: ").append(City).append("\n");
-        info.append("Departments: ");
-        for (Department department : Departments){
-            info.append(department.getName()).append(", ");
+        info.append("Departments: ").append("\n");
+        info.append("\u001B[32m");
+        for (Department department : Departments) {
+            info.append(department.getInfo()).append("\n");
         }
+        info.append("\u001B[0m");
         return info.toString();
     }
 
@@ -40,6 +42,19 @@ class University {
 
     public List<Department> getDepartments() {
         return Departments;
+    }
+
+    public Department getDepartmentByName(String departmentName) {
+        for (Department department : getDepartments()) {
+            if (department.getName().equals(departmentName)) {
+                return department;
+            }
+        }
+        return null;
+    }
+
+    public void setDepartment(List<Department> departmentList) {
+        Departments.addAll(departmentList);
     }
 
     public void addDepartment(Department department) {
