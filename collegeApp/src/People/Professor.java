@@ -7,6 +7,7 @@ import Enums.Professorship;
 import javax.security.auth.Subject;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Professor extends Person implements Employee{
@@ -15,10 +16,11 @@ public class Professor extends Person implements Employee{
     public List<Subject> Subjects;
     private Double Salary;
 
-    public Professor(String name, String surname, Gender gender, String personalCode, String birthDate, String email, String phone, String address, String city, String country, Double salary, Professorship professorship, Degree degree) throws ParseException {
+    public Professor(String name, String surname, Gender gender, String personalCode, Date birthDate, String email, String phone, String address, String city, String country, Double salary, Professorship professorship, Degree degree) throws ParseException {
         super(name, surname, gender, personalCode, birthDate, email, phone, address,city, country);
         Professorship = professorship;
         Degree = degree;
+        Salary = salary;
         Subjects = new ArrayList<Subject>();
     }
 
@@ -27,7 +29,7 @@ public class Professor extends Person implements Employee{
         return  this.getFullName() + "\n" +
                 "Degree: " + Degree.getFullName() + "\n" +
                 "Professorship: " + Professorship.getFullName() + "\n" +
-                super.getInfo();
+                super.getInfo() + "\n";
     }
 
     @Override

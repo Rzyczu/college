@@ -4,6 +4,7 @@ import Enums.Gender;
 import Enums.WorkField;
 
 import java.text.ParseException;
+import java.util.Date;
 
 public
 class Personnel extends Person implements Employee {
@@ -11,7 +12,7 @@ class Personnel extends Person implements Employee {
     private Double Salary;
 
     public
-    Personnel(String name, String surname, Gender gender, String personalCode, String birthDate, String email, String phone, String address, String city, String country, Double salary, WorkField field) throws ParseException {
+    Personnel(String name, String surname, Gender gender, String personalCode, Date birthDate, String email, String phone, String address, String city, String country, Double salary, WorkField field) throws ParseException {
         super(name, surname, gender, personalCode, birthDate, email, phone, address, city, country);
         Field = field;
         Salary = salary;
@@ -20,7 +21,7 @@ class Personnel extends Person implements Employee {
     @Override
     public
     String getInfo() {
-        return "Work Field: " + Field +
+        return "Work Field: " + Field.getName() + "\n" +
                 super.getInfo() + "\n";
     }
 

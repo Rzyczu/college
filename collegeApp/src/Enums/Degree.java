@@ -21,4 +21,13 @@ public enum Degree{
     public String getAbbreviation() {
         return abbreviation;
     }
+
+    public static Degree fromFullName(String fullName) {
+        for (Degree degree : Degree.values()) {
+            if (degree.getFullName().replaceAll("\\s+", "").equalsIgnoreCase(fullName)) {
+                return degree;
+            }
+        }
+        throw new IllegalArgumentException("No enum constant with full name: " + fullName);
+    }
 }

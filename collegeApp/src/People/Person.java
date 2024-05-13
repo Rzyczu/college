@@ -19,18 +19,17 @@ class Person {
     protected String City;
     protected String Country;
 
-    public
-    Person(String name, String surname, Gender gender, String personalCode, String birthDate, String email, String phone, String address, String city, String country) throws ParseException {     //birthDate Format yyyy-MM-dd
+    public Person(String name, String surname, Gender gender, String personalCode, Date birthDate, String email, String phone, String address, String city, String country) throws ParseException {     //birthDate Format yyyy-MM-dd
         Name = name;
         Surname = surname;
         Gender = gender;
         PersonalCode = personalCode;
-        Email = isValidEmail(email) ? email : null;
-        Phone = isValidPhoneNumber(phone) ? phone : null;
+        Email = isValidEmail(email) ? email: null;
+        Phone = isValidPhoneNumber(phone) ? phone: null;
         Address = address;
         City = city;
         Country = country;
-        BirthDate = new SimpleDateFormat("yyyy-MM-dd").parse(birthDate);
+        BirthDate = birthDate;
     }
 
     public String getInfo() {
@@ -46,63 +45,51 @@ class Person {
         return info.toString();
     }
 
-    public
-    String getName() {
+    public String getName() {
         return Name;
     }
 
-    public
-    String getSurname() {
+    public String getSurname() {
         return Surname;
     }
 
-    public
-    Gender getGender() {
+    public Gender getGender() {
         return Gender;
     }
 
-    public
-    String getPersonalCode() {
+    public String getPersonalCode() {
         return PersonalCode;
     }
 
-    public
-    String getBirthDate() {
+    public String getBirthDate() {
         return new SimpleDateFormat("yyyy-MM-dd").format(BirthDate);
     }
 
-    public
-    String getEmail() {
+    public String getEmail() {
         return Email;
     }
 
-    public
-    String getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
-    public
-    String getFullName() {
+    public String getFullName() {
         return Name + " " + Surname;
     }
 
-    public
-    String getFullAddress() {
+    public String getFullAddress() {
         return Address + ", " + City + ", " + Country;
     }
 
-    public
-    String getContactInfo() {
+    public String getContactInfo() {
         return "Phone " + Phone + ", Email " + Email;
     }
 
-    public
-    void changeSurname(String surname) {
+    public void changeSurname(String surname) {
         Surname = surname;
     }
 
-    public
-    void changeEmail(String email) {
+    public void changeEmail(String email) {
         if (isValidEmail(email)) {
             Email = email;
         } else {
@@ -110,8 +97,7 @@ class Person {
         }
     }
 
-    public
-    void changePhoneNumber(String phone) {
+    public void changePhoneNumber(String phone) {
         if (isValidPhoneNumber(phone)) {
             Phone = phone;
         } else {
@@ -119,30 +105,25 @@ class Person {
         }
     }
 
-    public
-    void changeAddress(String address) {
+    public void changeAddress(String address) {
         Address = address;
     }
 
-    public
-    void changeCity(String city) {
+    public void changeCity(String city) {
         City = city;
     }
 
-    public
-    void changeCountry(String country) {
+    public void changeCountry(String country) {
         Country = country;
     }
 
-    private
-    boolean isValidEmail(String email) {
+    private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailRegex);
     }
 
-    private
-    boolean isValidPhoneNumber(String phone) {
-        String phoneRegex = "^\\+(?:[0-9] ?){6,14}[0-9]$";
+    private boolean isValidPhoneNumber(String phone) {
+        String phoneRegex = "\\d{9}";
         return phone.matches(phoneRegex);
     }
 }
