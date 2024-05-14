@@ -17,11 +17,13 @@ import java.util.List;
 
 public class ReadExcel {
 
+    // Method to get the workbook from the given file path
     private static Workbook getWorkbook(String filePath) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(new File(filePath));
         return new XSSFWorkbook(fileInputStream);
     }
 
+    // Method to close the workbook and file input stream
     private static void closeWorkbook(Workbook workbook, FileInputStream fileInputStream) throws IOException {
         workbook.close();
         if (fileInputStream != null) {
@@ -29,10 +31,12 @@ public class ReadExcel {
         }
     }
 
+    // Method to retrieve string cell value
     private static String getStringCellValue(Cell cell) {
         return cell.getStringCellValue().trim();
     }
 
+    // Method to retrieve phone cell value
     private static String getPhoneCellValue(Cell cell) {
         if (cell.getCellType() == CellType.NUMERIC) {
             return String.valueOf((long) cell.getNumericCellValue());
@@ -41,6 +45,7 @@ public class ReadExcel {
         }
     }
 
+    // Method to retrieve numeric cell value
     private static Double getNumericCellValue(Cell cell) {
         if (cell.getCellType() == CellType.NUMERIC) {
             return cell.getNumericCellValue();
@@ -51,6 +56,7 @@ public class ReadExcel {
         }
     }
 
+    // Method to retrieve date cell value
     private static Date getDateCellValue(Cell cell) throws ParseException {
         if (cell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(cell)) {
             return cell.getDateCellValue();
@@ -59,6 +65,7 @@ public class ReadExcel {
         }
     }
 
+    // Method to read students from Excel file
     public static List<Student> readStudentsFromExcel(String filePath) throws IOException, ParseException {
         List<Student> students = new ArrayList<>();
         Workbook workbook = getWorkbook(filePath);
@@ -85,6 +92,7 @@ public class ReadExcel {
         return students;
     }
 
+    // Method to read personnel from Excel file
     public static List<Personnel> readPersonnelFromExcel(String filePath) throws IOException, ParseException {
         List<Personnel> personnelList = new ArrayList<>();
         Workbook workbook = getWorkbook(filePath);
@@ -112,6 +120,7 @@ public class ReadExcel {
         return personnelList;
     }
 
+    // Method to read professors from Excel file
     public static List<Professor> readProfessorFromExcel(String filePath) throws IOException, ParseException {
         List<Professor> professorList = new ArrayList<>();
         Workbook workbook = getWorkbook(filePath);

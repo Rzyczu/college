@@ -1,5 +1,8 @@
 package Enums;
 
+/**
+ * Enumeration representing different professorship levels.
+ */
 public enum Professorship {
     ASSISTANT_PROFESSOR("Assistant Professor", "Asst. Prof."),
     ASSOCIATE_PROFESSOR("Associate Professor", "Assoc. Prof."),
@@ -13,19 +16,38 @@ public enum Professorship {
     private final String fullName;
     private final String abbreviation;
 
+    /**
+     * Constructor for Professorship enum.
+     * @param fullName The full name of the professorship.
+     * @param abbreviation The abbreviation of the professorship.
+     */
     Professorship(String fullName, String abbreviation) {
         this.fullName = fullName;
         this.abbreviation = abbreviation;
     }
 
+    /**
+     * Gets the full name of the professorship.
+     * @return The full name of the professorship.
+     */
     public String getFullName() {
         return fullName;
     }
 
+    /**
+     * Gets the abbreviation of the professorship.
+     * @return The abbreviation of the professorship.
+     */
     public String getAbbreviation() {
         return abbreviation;
     }
 
+    /**
+     * Retrieves the Professorship enum constant based on its full name.
+     * @param fullName The full name of the professorship.
+     * @return The Professorship enum constant.
+     * @throws IllegalArgumentException if no enum constant is found with the specified full name.
+     */
     public static Professorship fromFullName(String fullName) {
         for (Professorship professorship : Professorship.values()) {
             if (professorship.getFullName().replaceAll("\\s+", "_").equalsIgnoreCase(fullName)) {
