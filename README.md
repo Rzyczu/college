@@ -47,4 +47,18 @@ To download the University Management System project to your local machine, foll
 7. Access the downloaded project in your file explorer or terminal.
 
 
-   
+## Data Files
+The project includes Excel files in the `data` folder to facilitate importing data into the system. These files contain sample data for students, personnel, and professors.
+
+### StudentList.xlsx
+- Contains data for students enrolled in the university.
+- Columns: name, surname, gender, personalCode, birthDate, email, phone, address, city, country, studentID.
+
+### PersonnelList.xlsx
+- Contains data for administrative personnel working at the university.
+- Columns: name, surname, gender, personalCode, birthDate, email, phone, address, city, country, salary, field.
+
+### ProfessorList.xlsx
+- Contains data for professors employed by the university.
+- Columns: name, surname, gender, personalCode, birthDate, email, phone, address, city, country, salary, professorship, degree.
+
