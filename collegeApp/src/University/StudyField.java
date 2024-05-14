@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 public class StudyField {
     private final String Name;
-    private List<Class> Classes;
+    private List<Group> Groups;
     public static List<Curriculum> Curriculum;
 
     public StudyField(String name) {
         Name = name;
-        Classes = new ArrayList<>();
+        Groups = new ArrayList<>();
         Curriculum = new ArrayList<>();
     }
 
@@ -22,26 +22,25 @@ public class StudyField {
 
     public String getInfo() {
         StringBuilder info = new StringBuilder();
-        info.append("Name: ").append(Name).append("\n");
-        info.append("Classes: ");
-        for (Class c : Classes) {
-            info.append(c.getClass()).append(", ");
+        info.append("Study Field Name: ").append(Name).append("\n");
+        info.append("Groups: ").append("\n");
+        for (Group group : Groups) {
+            info.append(group.getInfo()).append("\n");
         }
-        if (!Classes.isEmpty()) {
-            info.setLength(info.length() - 2);
-        }
-        info.append("\nCourses: ");
+        info.append("Courses: ").append("\n");
         for (Curriculum curriculum : Curriculum) {
-            info.append(curriculum.getYear()).append(", ");
+            info.append(curriculum.getInfo()).append("\n");
         }
-        if (!Curriculum.isEmpty()) {
-            info.setLength(info.length() - 2);
+        info.append("Groups: ").append("\n");
+        for (Group group : Groups) {
+            info.append(group.getInfo()).append("\n");
         }
+
         return info.toString();
     }
 
-    public List<Class> getClasses() {
-        return Classes.stream()
+    public List<Group> getClasses() {
+        return Groups.stream()
                 .filter(c -> c.getTerm() > -1)
                 .collect(Collectors.toList());
     }
@@ -60,7 +59,7 @@ public class StudyField {
 
     public List<Student> getStudents() {
         Set<Student> studentsList = new HashSet<>();
-        for (Class c : Classes) {
+        for (Group c : Groups) {
             studentsList.addAll(c.getStudents());
         }
         return new ArrayList<>(studentsList);
@@ -70,15 +69,15 @@ public class StudyField {
         Curriculum.add(curriculum);
     }
 
-    public void addClass(Class c) {
-        Classes.add(c);
+    public void addGroup(Group c) {
+        Groups.add(c);
     }
 
     public void removeCourse(Curriculum curriculum) {
         Curriculum.remove(curriculum);
     }
 
-    public void removeClass(Class c) {
-        Classes.remove(c);
+    public void removeGroup(Group c) {
+        Groups.remove(c);
     }
 }

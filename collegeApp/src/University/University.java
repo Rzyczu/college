@@ -23,7 +23,7 @@ class University {
 
     public String getInfo() {
         StringBuilder info = new StringBuilder();
-        info.append("Name: ").append(Name).append("\n");
+        info.append("University Name: ").append(Name).append("\n");
         info.append("Type: ").append(Type.getName()).append("\n");
         info.append("Country: ").append(Country).append("\n");
         info.append("City: ").append(City).append("\n");

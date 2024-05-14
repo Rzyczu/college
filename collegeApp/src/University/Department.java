@@ -57,11 +57,12 @@ public class Department {
 
     public String getInfo() {
         StringBuilder info = new StringBuilder();
-        info.append("Name: ").append(Name).append("\n");
+        info.append("Department Name: ").append(Name).append("\n");
         info.append("Dean: ").append(Dean.getFullName()).append("\n");
-        info.append("Personnel: ");
+        info.append("Personnel: ").append("\n");
         for (Personnel personnel : PersonnelList){
-            info.append(personnel.getName()).append(", ");
+            info.append(personnel.getField().getName()).append(" - ") ;
+        info.append(personnel.getFullName()).append("\n");
         }
         info.append("\nStudy Fields: ").append("\n");
         info.append("\u001B[0m");

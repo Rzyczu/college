@@ -26,7 +26,7 @@ public class Subject {
     }
 
     public String getInfo() {
-        return "Name: " + Name + ", Hours: " + Hours + ", Lecturer: " + Lecturer.getName();
+        return "Subject Name: " + Name + "\nHours: " + Hours + ", Lecturer: " + Lecturer.getFullName();
     }
 
     public void changeHoursNumber(int hours) {

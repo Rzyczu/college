@@ -41,6 +41,14 @@ public class Professor extends Person implements Employee{
         return Subjects;
     }
 
+    public Professorship getProfessorship() {
+        return Professorship;
+    }
+
+    public Degree getDegree() {
+        return Degree;
+    }
+
     public void setSubjects(List<Subject> subjects) {
         Subjects = subjects;
     }

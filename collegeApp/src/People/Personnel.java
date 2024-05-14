@@ -18,6 +18,10 @@ class Personnel extends Person implements Employee {
         Salary = salary;
     }
 
+    public WorkField getField() {
+        return Field;
+    }
+
     @Override
     public
     String getInfo() {

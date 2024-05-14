@@ -6,13 +6,13 @@ import People.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Class {
+public class Group {
     public int Term;    //Term -1 meaning that class graduated
     public List<Student> Students;
     public Student Mayor;
     public Curriculum Curriculum;
 
-    public Class(CurriculumType type) {
+    public Group(CurriculumType type) {
         Term = 1;
         Students = new ArrayList<Student>();
         Curriculum = setCurriculum(type);
@@ -20,10 +20,17 @@ public class Class {
 
     public String getInfo() {
         StringBuilder info = new StringBuilder();
+        if (Mayor != null) {
+            info.append("Mayor: ").append(Mayor.getFullName()).append("\n");
+        }
         info.append("Term: ").append(Term).append("\n");
         info.append("Year: ").append(getYear()).append("\n");
-        ;
-        info.append("University.Curriculum: ").append(Curriculum);
+        info.append("Curriculum: ");
+        if (Curriculum != null) {
+            info.append(Curriculum.toString()).append("\n");
+        } else{
+            info.append("None");
+        }
         return info.toString();
     }
 
