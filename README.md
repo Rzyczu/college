@@ -42,7 +42,7 @@ To download the University Management System project to your local machine, foll
 3. Open Git Bash or Terminal on your computer.
 4. Navigate to the directory where you want to download the project.
 5. Use the `git clone` command followed by the repository URL:
-   ```bash git clone https://github.com/your-username/university-management-system.git```
+   ```bash git clone https://github.com/rzyczu/university-management-system.git```
 6. Press Enter to download the project.
 7. Access the downloaded project in your file explorer or terminal.
 
